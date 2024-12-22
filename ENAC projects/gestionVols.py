@@ -14,6 +14,7 @@ while continuer:
     print("\t\t\t Quit               Q")
     print("\t\t\t Afficher Vols      P")
     print("\t\t\t Durée vol          F")
+    print("\t\t\t Temps vol          T")
     print("\t\t\t Départs aérodrome  D")
     print("\t\t\t Ajouter Vol        A")
     print("\t\t\t Supprimer Vol      S")
@@ -29,6 +30,8 @@ while continuer:
         fonctionsVols.affichage(vols)
     elif choice=="F":
         fonctionsVols.calculH(vols)
+    elif choice=="T":
+        fonctionsVols.heures(vols, input("Insérer la date ici : "))
     elif choice=="D":
         fonctionsVols.departA(vols)
     elif choice=="A":
