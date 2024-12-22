@@ -1,7 +1,12 @@
 import fonctionsVols
+import pickle as pkl
+import os
 
+vols=[]
 continuer = True
-vols = []
+if os.path.getsize("vols.txt")>0:
+    with open("vols.txt", "rb") as file:
+        vols = pkl.load(file)
 
 while continuer:
     # Print menu
@@ -17,6 +22,8 @@ while continuer:
 
     if choice == "Q":
         continuer = False
+        with open("vols.txt", "wb") as file:
+            pkl.dump(vols, file)
     elif choice== "P":
         fonctionsVols.affichage(vols)
     elif choice=="D":
