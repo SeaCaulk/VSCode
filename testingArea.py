@@ -16,4 +16,22 @@
 # print(a)
 # with open("test.txt", "w") as file:
 #     file.write("Hello, World!")
-print(open("test.txt", "r").read())
+# print(open("test.txt", "r").read())
+# import tkinter as tk
+
+# # Create the main window
+# window = tk.Tk()
+# window.title("PythonExamples.org")
+# window.geometry("600x400")
+
+# label = tk.Label(window, text="Enter your input")
+# label.pack()
+
+# # Create an Entry widget
+# entry = tk.Entry(window, bg="lightgreen")
+# entry.pack()
+
+# # Run the application
+# window.mainloop()
+import sys
+print(sys.path)
