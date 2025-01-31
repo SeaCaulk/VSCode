@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  {% set titre="Supprimer" %}
+  {% include("layout/head.html") %}
+</head>
+
+<body>
+  <!-- ======= Header ======= -->
+  {% include("layout/nav.html") %}
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs Section ======= -->
+    {% include("layout/breadcrumbs.html") %}
+
+    <section class="inner-page">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Supprimer un vol</h2>
+        </div>
+
+        <table class="table text-center">
+          <thead>
+            <tr>
+              <th>Supp</th>
+              <th><i class="fas fa-flag-checkered fa-2x"></i> <br />Indicatif</th>
+              <th><i class="fas fa-plane-departure fa-2x"></i><br />OACI Départ</th>
+              <th><i class="fas fa-plane-arrival fa-2x"></i><br />OACI Arrivée</th>
+              <th><i class="far fa-clock fa-2x"></i><br />Heure Départ </th>
+              <th><i class="fas fa-clock fa-2x"></i><br />Heure Arrivée </th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for flight in flights %}
+            <tr>
+              <td><i class="fas fa-trash-alt fa-2x text-danger"></i></td>
+              {% for i in range(5)%}
+              <td>{{flight[i]}}</td>
+              {%endfor%}
+            </tr>
+            {%endfor%}
+            <tr>
+              <td><i class="fas fa-trash-alt fa-2x text-danger"></i></td>
+              <td>F-GDVS</td>
+              <td>LFBO</td>
+              <td>LFBA</td>
+              <td>02:00</td>
+              <td>05:14</td>
+            </tr>
+          </tbody>
+        </table>
+
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  {% include("layout/footer.html") %}
+</body>
+
+</html>

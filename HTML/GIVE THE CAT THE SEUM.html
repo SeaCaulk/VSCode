@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Get TrouNoired</title>
+        <style>
+            body {
+                cursor: url('images/treat.png'), pointer;
+            }
+            img {
+                width: 500px; 
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Give the cat the seum</h1>
+        <img id="image1" src="images/POP0.png" alt="Cat Image 1">
+        <img id="image2" src="images/HUH.webp" alt="Cat Image 2">
+
+        <script>
+            const image1 = document.getElementById('image1');
+            const image2 = document.getElementById('image2');
+
+            image1.addEventListener('mouseover', () => {
+                image2.src = 'images/MADCAT.png';
+            });
+
+            image1.addEventListener('mouseout', () => {
+                image2.src = 'images/HUH.webp';
+            });
+            image1.addEventListener('mouseover', () => {
+                image1.src = 'images/POP1.png';
+            });
+
+            image1.addEventListener('mouseout', () => {
+                image1.src = 'images/POP0.png';
+            });
+            image2.addEventListener('mouseover', () => {
+                image1.src = 'images/CRYINGCAT.webp';
+            });
+
+            image2.addEventListener('mouseout', () => {
+                image1.src = 'images/POP0.png';
+            });
+            image2.addEventListener('mouseover', () => {
+                image2.src = 'images/HAPPYCAT.png';
+            });
+
+            image2.addEventListener('mouseout', () => {
+                image2.src = 'images/HUH.webp';
+            });
+        </script>
+    </body>
+</html>

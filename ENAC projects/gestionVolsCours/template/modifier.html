@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  {% set titre="Modifier" %}
+  {% include("layout/head.html") %}
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  {% include("layout/nav.html") %}
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs Section ======= -->
+    {% include("layout/breadcrumbs.html") %}
+
+    <section class="inner-page">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Modifier un vol</h2>
+        </div>
+
+        <div>
+          Sélectionner le vol à modifier
+        </div>
+        <div class="d-flex">
+          
+          <ul class="list-group me-5 flex-fill">
+            {% for flight in flights %}
+            {% set i = loop.index0 %}
+            <li class="list-group-item d-flex">
+                <a href="/modifier[{{i}}]" ><i class="fa-solid fa-pencil text-warning fa-2x me-4"></i></a>
+                <div class="fw-bold flex-fill align-self-center">{{flight[0]}}</div>
+                <span class="fst-italic flex-fill align-self-center">{{flight[1]}} - {{flight[2]}}</span>
+                <small class="flex-fill align-self-center">{{flight[3]}} - {{flight[4]}}</small>
+            </li>
+            {% endfor %}
+
+            <li class="list-group-item d-flex">
+              <i class="fa-solid fa-pencil text-warning fa-2x me-4"></i>
+              <div class="fw-bold flex-fill align-self-center">F-GDVS</div>
+              <span class="fst-italic flex-fill align-self-center">LFBO - LFBA</span>
+              <small class="flex-fill align-self-center">02:00 - 05:14</small>
+            </li>
+          </ul>
+
+          <form action="/modifier" method="POST" class="flex-fill">
+            <div class="row form-group">
+              <input type="hidden" name="current" value="{{ current }}">
+              {% if current==-1 %}
+                {% set flights = [ ["", "", "", "",""] ] %}
+              {% endif %}
+
+              <div class="col-6">
+                <!-- indicatif -->
+                <div class="d-flex">
+                  <label for="indicatif"> <i class="fas fa-flag-checkered fa-2x me-3"></i> </label>
+                  <input type="text" name="indicatif" class="form-control" id="indicatif" placeholder="Indicatif" value="{{flights[current][0]}}" required />
+                </div>
+
+                <!-- OACI départ -->
+                <div class="d-flex mt-4">
+                  <label for="OACIDep"><i class="fas fa-plane-departure fa-2x me-2"></i></label>
+                  <input list="OACI_list" id="OACIDep"  name="OACIDep"  class="form-control" value="{{flights[current][1]}}" required />
+                  <datalist id="OACI_list">
+                    <option value="LFBA">Agen</option>
+                    <option value="LFBD">Bordeaux-Mérignac</option>
+                    <option value="LFRB">Brest</option>
+                    <option value="LFAC">Calais</option>
+                    <option value="LFML">Marseille</option>
+                    <option value="LFBR">Muret</option>
+                    <option value="LFPO">Paris Orly</option>
+                    <option value="LFST">Strasbourg</option>
+                    <option value="LFBO">Toulouse</option>
+                    <option value="LFAV">Valenciennes</option>
+                  </datalist>
+                </div>
+
+                 <!-- OACI arrivée -->
+                <div class="d-flex mt-4">
+                  <label for="OACIarr"><i class="fas fa-plane-arrival fa-2x me-2"></i></label>
+                  <input list="OACI_list" id="OACIArr"  name="OACIArr"  class="form-control" value="{{flights[current][2]}}" required />
+                </div>
+              </div>
+
+              <div class="col-6 text-center">
+                <div><i class="far fa-clock fa-2x"></i></div>
+                <label for="Hdep">Heure Depart</label>
+                <input type="time" name="Hdep" class="form-control text-center" id="Hdep"  value="{{flights[current][3]}}" required />
+
+                <label for="Harr">Heure Arrivée</label>
+                <input type="time" name="Harr" class="form-control text-center" id="Harr"  value="{{flights[current][4]}}" required />
+
+              </div>
+
+
+
+
+              
+              
+
+              
+
+            </div>
+
+            <div class="row form-group mt-3">
+              <div class="col-6 d-flex">
+                
+              </div>
+              <div class="col-6 d-flex">
+                
+              </div>
+            </div>
+
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary mx-auto mt-2">Sauvegarder les modifications</button>
+            </div>
+          </form>
+
+
+        </div>
+
+
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  {% include("layout/footer.html") %}
+
+</body>
+
+</html>
