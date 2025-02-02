@@ -35,8 +35,10 @@
           </thead>
           <tbody>
             {% for flight in flights %}
+              {% set j = loop.index0 %}
+
             <tr>
-              <td><i class="fas fa-trash-alt fa-2x text-danger"></i></td>
+              <td><a href="/supprimer[{{j}}]"><i class="fas fa-trash-alt fa-2x text-danger"></i></a></td>
               {% for i in range(5)%}
               <td>{{flight[i]}}</td>
               {%endfor%}

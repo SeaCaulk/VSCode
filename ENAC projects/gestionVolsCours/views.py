@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, session
 import os
 import json
 
@@ -47,10 +47,37 @@ def modifId(id):
 @app.route("/supprimer")
 def supprimer():
   return render_template("supprimer.html", flights=load())
+@app.route("/supprimer[<int:id>]")
+def suppId(id):
+  flights=load()
+  del flights[id]
+  with open("ENAC projects/gestionVolsCours/flights.txt", "w") as file:
+      json.dump(flights,file)
+  return render_template("supprimer.html", flights=load())
 
 @app.route("/connecter")
 def connecter():
   return render_template("connecter.html")
+@app.route("/valid_login", methods=['GET', 'POST'])
+def connectId():
+  if request.form['password']=="gsea":
+    session['login'] = request.form['name']
+    return render_template("index.html")
+  else:
+    return render_template('connecter.html')
+
+@app.route("/disconnect")
+def deconnecter():
+  session.pop('login', None)
+  return render_template("index.html")
+
+@app.route("/pagePrivee")
+def PP():
+  if 'login' in session:
+    return render_template("GIVECATSEUM.html")
+  else:
+    return render_template("connecter.html")
+  
 
 @app.route("/afficher")
 def afficher():
