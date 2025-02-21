@@ -13,14 +13,30 @@ body {
     color: #444;
 }
 
-.bodybg {
-    background-image: url("/static/img/tapis.png");
-    background-size: cover;
-    background-repeat: no-repeat;
+/* .bodybg {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    } */
+    
+    .container2 {
+    background-image: url("/static/img/tapis.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    height: 96vh;
 }
+
+    .containedhands {
+        justify-content:center;
+        align-items:center;
+        display:flex;
+        flex-direction:column;
+        rotate: 90deg;
+    }
 
 .content {
     flex: 1; 
