@@ -3,11 +3,13 @@ from random import shuffle
 import json
 
 scores={}
-cartes={'H7':'/static/img/Cartes/Coeur_7.png','H8':'/static/img/Cartes/Coeur_8.png','H9':'/static/img/Cartes/Coeur_9.png','H10':'/static/img/Cartes/Coeur_10.png','H11':'/static/img/Cartes/Coeur_Valet.png','H12':'/static/img/Cartes/Coeur_Dame.png','H13':'/static/img/Cartes/Coeur_Roi.png','H14':'/static/img/Cartes/Coeur_As.png',
-        'C7':'/static/img/Cartes/Carreau_7.png','C8':'/static/img/Cartes/Carreau_8.png','C9':'/static/img/Cartes/Carreau_9.png','C10':'/static/img/Cartes/Carreau_10.png','C11':'/static/img/Cartes/Carreau_Valet.png','C12':'/static/img/Cartes/Carreau_Dame.png','C13':'/static/img/Cartes/Carreau_Roi.png','C14':'/static/img/Cartes/Carreau_As.png',
-        'P7':'/static/img/Cartes/Pique_7.png','P8':'/static/img/Cartes/Pique_8.png','P9':'/static/img/Cartes/Pique_9.png','P10':'/static/img/Cartes/Pique_10.png','P11':'/static/img/Cartes/Pique_Valet.png','P12':'/static/img/Cartes/Pique_Dame.png','P13':'/static/img/Cartes/Pique_Roi.png','P14':'/static/img/Cartes/Pique_As.png',
-        'T7':'/static/img/Cartes/Trefle_7.png','T8':'/static/img/Cartes/Trefle_8.png','T9':'/static/img/Cartes/Trefle_9.png','T10':'/static/img/Cartes/Trefle_10.png','T11':'/static/img/Cartes/Trefle_Valet.png','T12':'/static/img/Cartes/Trefle_Dame.png','T13':'/static/img/Cartes/Trefle_Roi.png','T14':'/static/img/Cartes/Trefle_As.png'}
 
+cartes={f"{i}{k}":f"/static/img/Cartes/{j}_{k}.png" for i,j in [('H','Coeur'),('C','Carreau'),('P','Pique'),('T','Trefle')] for k in range(7,15)}
+
+# cartes={'H7':'/static/img/Cartes/Coeur_7.png','H8':'/static/img/Cartes/Coeur_8.png','H9':'/static/img/Cartes/Coeur_9.png','H10':'/static/img/Cartes/Coeur_10.png','H11':'/static/img/Cartes/Coeur_Valet.png','H12':'/static/img/Cartes/Coeur_Dame.png','H13':'/static/img/Cartes/Coeur_Roi.png','H14':'/static/img/Cartes/Coeur_As.png',
+#         'C7':'/static/img/Cartes/Carreau_7.png','C8':'/static/img/Cartes/Carreau_8.png','C9':'/static/img/Cartes/Carreau_9.png','C10':'/static/img/Cartes/Carreau_10.png','C11':'/static/img/Cartes/Carreau_Valet.png','C12':'/static/img/Cartes/Carreau_Dame.png','C13':'/static/img/Cartes/Carreau_Roi.png','C14':'/static/img/Cartes/Carreau_As.png',
+#         'P7':'/static/img/Cartes/Pique_7.png','P8':'/static/img/Cartes/Pique_8.png','P9':'/static/img/Cartes/Pique_9.png','P10':'/static/img/Cartes/Pique_10.png','P11':'/static/img/Cartes/Pique_Valet.png','P12':'/static/img/Cartes/Pique_Dame.png','P13':'/static/img/Cartes/Pique_Roi.png','P14':'/static/img/Cartes/Pique_As.png',
+#         'T7':'/static/img/Cartes/Trefle_7.png','T8':'/static/img/Cartes/Trefle_8.png','T9':'/static/img/Cartes/Trefle_9.png','T10':'/static/img/Cartes/Trefle_10.png','T11':'/static/img/Cartes/Trefle_Valet.png','T12':'/static/img/Cartes/Trefle_Dame.png','T13':'/static/img/Cartes/Trefle_Roi.png','T14':'/static/img/Cartes/Trefle_As.png'}
 R=[]
 K=[]
 cartesPosees=[]
