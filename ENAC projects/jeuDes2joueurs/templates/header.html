@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>{{page}}</title>
+  <link href="/static/img/favicon.png" rel="icon"> <!-- Favicons -->
+  <link href="/static/css/all.css" rel="stylesheet" /> <!-- Tous les css ont été regroupés dans all.css -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+
+      <div class="logo me-auto">
+        <h1><a href="/">Jeu de dés multi postes</a></h1>
+      </div>
+
+      <!-- ======= Menu de navigation ======= -->
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="/">Accueil</a></li>
+          <li><a class="nav-link scrollto" href="/jouer">Jouer</a></li>
+          <li><a class="nav-link scrollto" href="/connecter">{% if 'no_joueur' in session %}Se déconnecter{% else %}Se connecter{%endif%} </a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  

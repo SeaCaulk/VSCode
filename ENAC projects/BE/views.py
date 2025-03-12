@@ -44,8 +44,15 @@ def rules():
   return render_template("rules.html")
 
 #page du jeu lui-même
-@app.route("/game", methods=["GET", "POST"])
-def game():
-  if request.method=="POST":
-    jeu.tour(request.form["joueur"],jeu.cartes,request.form["input"],jeu.R,jeu.K,request.form["input2"],request.form["inputlists"])
+@app.route("/game<str:d>[<int:id>,<str:Id>]", methods=["GET", "POST"])
+def game(d,id,Id):
+  if id==2:
+    pass
+
+  elif Id=="pose":
+    if request.method=="POST":
+      pass
+  elif Id=="take":
+    if request.method=="POST":
+      pass
   return render_template("game.html", cartesPosees=jeu.cartesPosees,joueurs=jeu.Joueurs, scores=jeu.scores,cartes=jeu.cartes,R=jeu.R,K=jeu.K)

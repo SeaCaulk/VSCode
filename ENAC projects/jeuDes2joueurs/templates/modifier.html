@@ -1,0 +1,45 @@
+{% include("header.html") %}   
+
+<main id="main">
+
+       <section class="inner-page">
+            <div class="container">
+                <div class="row">
+                    <div class="col-7">
+                        <h2>Nos vols</h2>
+
+                        <table class="table mt-5">
+                            <thead>
+                                <tr>
+                                    <th>Modif</th>
+                                    <th>Indicatif</th>
+                                    <th>OACI Départ</th>
+                                    <th>OACI Arrivée</th>
+                                    <th>Heure Départ </th>
+                                    <th>Heure Arrivée </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for v in vols %}
+                                 <tr>
+                                    <td><a href="/modifier/{{loop.index}}" ><i class="fas fa-pencil-alt fa-2x text-secondary"></i></a></td>
+                                    {% for data in v %}
+                                    <td>{{data}}</td>
+                                    {%endfor%}
+                                </tr>
+                                {%endfor%}
+
+                            </tbody>
+                        </table>
+                    </div>
+                    {% if novol %}
+                    {% include "form_modifier.html" %}
+                    {% endif %}
+                </div>
+
+            </div>
+        </section>
+
+    </main><!-- End #main -->
+
+    {% include ("footer.html") %}

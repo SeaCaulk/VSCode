@@ -1,0 +1,36 @@
+{% include("header.html") %}
+
+<main id="main">
+  <section class="inner-page">
+    <div class="container">
+      <div class="row no-gutters">
+
+        <div class="col-6 contact offset-3" data-aos="fade-up" data-aos-delay="300">
+          {%if 'no_joueur' in session %}
+
+          <form action="/logout" method="post" role="form" class="php-email-form text-center">
+              <div class=" mt-2"><button type="submit">Se déconnecter</button></div>
+          </form>
+
+          {% else %}
+          <form action="/login" method="post" role="form" >
+            <h4><i class="fas fa-user-circle fa-2x"></i> Authentification des utilisateurs</h4>
+            <div class="row mt-5">
+              <div class="col-lg-6 form-group">
+                Joueur 1
+                <input type="radio" name="no_joueur" value="0">
+                Joueur 2
+                <input type="radio" name="no_joueur" value="1">
+              </div>
+            </div>
+            <div class=" mt-2"><button type="submit">Se connecter</button></div>
+          </form>          
+          {%endif%}
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main><!-- End #main -->
+
+{% include ("footer.html") %}

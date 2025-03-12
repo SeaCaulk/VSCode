@@ -1,0 +1,110 @@
+{% include("header.html") %}
+
+<main id="main">
+    <section class="inner-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-7">
+                    <h2>Nos vols</h2>
+
+                    <table class="table mt-5">
+                        <thead>
+                            <tr>
+                            <th><i class="fas fa-flag-checkered fa-2x"></i> <br />Indicatif</th>
+                            <th><i class="fas fa-plane-departure fa-2x"></i><br />OACI Départ</th>
+                            <th><i class="fas fa-plane-arrival fa-2x"></i><br />OACI Arrivée</th>
+                            <th> <i class="far fa-clock fa-2x"></i><br />Heure Départ </th>
+                            <th> <i class="fas fa-clock fa-2x"></i><br />Heure Arrivée </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for v in vols %}
+                            <tr>{% for data in v %}
+                                <td>{{data}}</td>
+                                {%endfor%}
+                            </tr>
+                            {%endfor%}
+                        </tbody>
+                    </table>
+                    {%if new %}
+                        Le nouveau vol a bien été ajouté
+                    {% endif %}
+                </div>
+                <div class="col-4 contact offset-1" data-aos-delay="300">
+                    <form action="/ajouter" method="post" role="form" class="php-email-form">
+                        <h4 class="w-100 text-center">Ajouter un vol</h4>
+                        <div class="row mt-4 form-group">
+                            <div class="col-2">
+                                <label for="indicatif">
+                                    <i class="fas fa-flag-checkered fa-2x"></i>
+                                </label>
+                            </div>
+                            <div class="col">
+                                <input type="text" name="indicatif" class="form-control" id="indicatif"
+                                    placeholder="Indicatif" required>
+                            </div>
+                        </div>
+
+
+                        <div class="row form-group">
+                            <div class="col-2">
+                                <label for="OACIDep"><i class="fas fa-plane-departure fa-2x"></i></label>
+                            </div>
+                            <div class="col">
+                                <select id="OACIDep" name="OACIDep" class="form-control" required>
+                                    <option disabled selected>OACI Départ</option>
+                                    <option value="LFBA">LFBA - Agen</option>
+                                    <option value="LFBD">LFBD - Bordeaux-Mérignac</option>
+                                    <option value="LFRB">LFRB - Brest</option>
+                                    <option value="LFAC">LFAC - Calais</option>
+                                    <option value="LFML">LFML - Marseille</option>
+                                    <option value="LFBR">LFBR - Muret</option>
+                                    <option value="LFPO">LFPO - Paris Orly</option>
+                                    <option value="LFST">LFST - Strasbourg</option>
+                                    <option value="LFBO">LFBO - Toulouse</option>
+                                    <option value="LFAV">LFAV - Valenciennes</option>
+                                  </select>
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-2">
+                                <label for="OACIArr"><i class="fas fa-plane-arrival fa-2x"></i></label>
+                            </div>
+                            <div class="col">
+                                <select id="OACIArr" name="OACIArr" class="form-control" required>
+                                    <option disabled selected>OACI Départ</option>
+                                    <option value="LFBA">LFBA - Agen</option>
+                                    <option value="LFBD">LFBD - Bordeaux-Mérignac</option>
+                                    <option value="LFRB">LFRB - Brest</option>
+                                    <option value="LFAC">LFAC - Calais</option>
+                                    <option value="LFML">LFML - Marseille</option>
+                                    <option value="LFBR">LFBR - Muret</option>
+                                    <option value="LFPO">LFPO - Paris Orly</option>
+                                    <option value="LFST">LFST - Strasbourg</option>
+                                    <option value="LFBO">LFBO - Toulouse</option>
+                                    <option value="LFAV">LFAV - Valenciennes</option>
+                                  </select>
+                            </div>
+                        </div>
+
+                        <div class="row form-group text-center mt-4">
+                            <div class="col">
+                                <label for="Harr"><i class="far fa-clock fa-2x"></i> Heure Depart</label>
+                                <input type="time" name="Harr" class="form-control mt-2" id="Hdep" placeholder="Heure départ" required>
+                            </div>
+                            <div class="col">
+                                <label for="Hdep"><i class="fas fa-clock fa-2x"></i> Heure Arrivée</label>
+                                <input type="time" name="Hdep" class="form-control mt-2" id="Hdep" placeholder="Heure départ" required>
+                            </div>
+                        </div>
+
+                        <div class="text-center"><button type="submit">Enregistrer</button></div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</main><!-- End #main -->

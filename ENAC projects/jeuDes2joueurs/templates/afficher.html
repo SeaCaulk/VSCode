@@ -1,0 +1,40 @@
+{% include("header.html") %}
+  <main id="main">
+
+    <!-- ======= About Us Section ======= -->
+    <section id="vols" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row no-gutters">
+
+          <div class="d-flex flex-column justify-content-center about-content">
+
+            <div class="section-title">
+              <h2>Nos vols</h2>
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th><i class="fas fa-flag-checkered fa-2x"></i> <br />Indicatif</th>
+                    <th><i class="fas fa-plane-departure fa-2x"></i><br />OACI Départ</th>
+                    <th><i class="fas fa-plane-arrival fa-2x"></i><br />OACI Arrivée</th>
+                    <th> <i class="far fa-clock fa-2x"></i><br />Heure Départ </th>
+                    <th> <i class="fas fa-clock fa-2x"></i><br />Heure Arrivée </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for v in vols %}
+                  <tr>{% for data in v %}
+                        <td>{{data}}</td>
+                      {%endfor%}
+                  </tr>
+                  {%endfor%}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- End About Us Section -->
+  </main><!-- End #main -->
+  {% include ("footer.html") %}
