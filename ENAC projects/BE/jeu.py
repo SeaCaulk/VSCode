@@ -36,15 +36,18 @@ def randomSet():
 
 def init(joueurs):
     i=1
-    CartesC=shuffle(cartes.keys())
+    CartesC=list(cartes.keys())
+    shuffle(CartesC)
+    print(CartesC,type(CartesC))
     for joueur in joueurs:
         Joueurs[joueur]=[]
-        for carte in range(14+i):
-            Joueurs[joueur].append(CartesC[carte])
-            del CartesC[carte]
+        for rand in range(14+i):
+            print(len(CartesC))
+            Joueurs[joueur].append(CartesC[-1])
+            del CartesC[-1]
         i=0
-    for i in range(len(CartesC)):
-        if i%2==0:
+    for j in range(len(CartesC)):
+        if j%2==0:
             R.append(CartesC[-1])
             del CartesC[-1]
         else:
@@ -52,17 +55,20 @@ def init(joueurs):
             del CartesC[-1]
     save()
 
-def tour(joueur,cartes,input,R,K,carteAbandonnee, inputlists):
-    illegal=False
+
+def take(joueur,Joueurs,input,R,K):
     #prend une carte d'une des deux piles, selon le choix du joueur
     if input=='takeRandom':
-        cartes[joueur].append(R[-1])
+        Joueurs[joueur].append(R[-1])
         del R[-1]
     elif input=='takeKnown':
-        cartes[joueur].append(K[-1])
+        Joueurs[joueur].append(K[-1])
         del K[-1]
+    save()
 
+def pose(cartesPosees,inputlists):
     #pose les cartes du joueur
+    illegal=False
     for inputlist in inputlists:
         inputlist.sort()
         if len(inputlist)>2 and (inputlist[0][1:]==inputlist[i][1:] for i in range(len(inputlist))):
@@ -72,11 +78,39 @@ def tour(joueur,cartes,input,R,K,carteAbandonnee, inputlists):
         else:
             illegal=True
             return(illegal)
+    save()
+
+def give(joueur,Joueurs,K,carteAbandonnee):
+    #pose la carte choisie par le joueur
+    K.append(Joueurs[joueur][carteAbandonnee])
+    del Joueurs[joueur][carteAbandonnee]
+    save()
+
+# def tour(joueur,cartes,input,R,K,carteAbandonnee, inputlists):
+#     illegal=False
+#     #prend une carte d'une des deux piles, selon le choix du joueur
+#     if input=='takeRandom':
+#         cartes[joueur].append(R[-1])
+#         del R[-1]
+#     elif input=='takeKnown':
+#         cartes[joueur].append(K[-1])
+#         del K[-1]
+
+#     #pose les cartes du joueur
+#     for inputlist in inputlists:
+#         inputlist.sort()
+#         if len(inputlist)>2 and (inputlist[0][1:]==inputlist[i][1:] for i in range(len(inputlist))):
+#             cartesPosees.append([inputlist])
+#         elif (inputlist[0][0]==inputlist[i][0] for i in range(len(inputlist))) and (inputlist[i][1:]==inputlist[i+1][1:]-1 for i in range(len(inputlist))):
+#             cartesPosees.append([inputlist])
+#         else:
+#             illegal=True
+#             return(illegal)
         
     #pose la carte choisie par le joueur
-    K.append(cartes[joueur][carteAbandonnee])
-    del cartes[joueur][carteAbandonnee]
-    save()
+    # K.append(cartes[joueur][carteAbandonnee])
+    # del cartes[joueur][carteAbandonnee]
+    # save()
 
 
 def bot():

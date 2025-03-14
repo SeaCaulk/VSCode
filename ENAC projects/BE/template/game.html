@@ -11,10 +11,31 @@
   {% include("layout/nav.html") %}
   <section class="container2">
     <!-- <img src="static/img/tapis.png"> -->
-    <img src="static/img/Cartes/Carreau_7.png" class="containedhands">
-    <img src="static/img/Cartes/Carreau_8.png" class="containedhands">
+    <form>
 
+      <div>
+        
+        <!-- {% if len(Joueurs)>1 %}
+        {% for carte in Joueurs[] %}
+        {%endif%} -->
 
+      </div>
+      <div>
+        <img src="static/img/Cartes/Carreau_7.png" class="containedhands">
+        <img src="static/img/Cartes/Carreau_8.png" class="containedhands">
+      </div>
+      <div>
+        {% for carte in Joueurs[name]%}
+        {% set i = loop.index0 %}
+        <input type="checkbox" id="checkbox{{i}}">
+        <label for="checkbox{{i}}">
+          <img src="{{cartes[carte]}}" alt="{{carte}}" class="checkbox-img">
+        </label>
+
+        {% endfor %}
+      </div>
+      
+    </form>
   </section>
   <!-- <section></section> -->
   <div class="content">
