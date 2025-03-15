@@ -11,24 +11,36 @@
   {% include("layout/nav.html") %}
   <section class="container2">
     <!-- <img src="static/img/tapis.png"> -->
-    <form>
+    <form method="post">
 
       <div>
         
-        <!-- {% if len(Joueurs)>1 %}
-        {% for carte in Joueurs[] %}
-        {%endif%} -->
+        {% if word=="H"%}
+          {% for carte in Joueurs[J2]%}
+          {% set i = loop.index0 %}
+            <img src="static/img/Cartes/dos.jpg" alt="carteadv" id="overlap" class="carteadv">
+          {% endfor %}
+        {%endif%}
 
       </div>
+      
       <div>
-        <img src="static/img/Cartes/Carreau_7.png" class="containedhands">
-        <img src="static/img/Cartes/Carreau_8.png" class="containedhands">
+        <!-- <div class="text-center"><button type="submit">Modifier</button></div> -->
+        <input class="containedhands" type="image" src="static/img/Cartes/Carreau_7.png" border="0" alt="Submit" />
+        <input class="containedhands" type="image" src="static/img/Cartes/Carreau_8.png" border="0" alt="Submit" />
+        
       </div>
+      
       <div>
-        {% for carte in Joueurs[name]%}
+      <!-- <img src="static/img/Cartes/Carreau_7.png" class="containedhands">
+      <img src="static/img/Cartes/Carreau_8.png" class="containedhands"> -->
+      </div>
+
+      <div>
+        {% for carte in Joueurs[J1]%}
         {% set i = loop.index0 %}
         <input type="checkbox" id="checkbox{{i}}">
-        <label for="checkbox{{i}}">
+        <label for="checkbox{{i}}" class="work" id="overlap">
           <img src="{{cartes[carte]}}" alt="{{carte}}" class="checkbox-img">
         </label>
 

@@ -46,12 +46,15 @@ def rules():
 #page du jeu lui-même
 @app.route("/game<string:d>[<int:id>,<string:Id>]", methods=["GET", "POST"])
 def game(d,id,Id):
-  if id==-1:
-    jeu.init(request.form["joueurs"])
+  if id==3:
+    if d=='B':
+      playerlist=['J1']
+    else:
+      playerlist=['J1','J2']
+    jeu.init(playerlist)
   if Id=="give" and id==1:
     if request.method=="POST":
       jeu.give(request.form["carte"],request.form["joueur"])
-    pass
   elif id==2:
     pass
   elif Id=="pose":
@@ -63,4 +66,4 @@ def game(d,id,Id):
     if request.method=="POST":
       jeu.take("joueur1",jeu.Joueurs,request.form["input"],jeu.R,jeu.K)
 
-  return render_template("game.html", cartesPosees=jeu.cartesPosees,Joueurs=jeu.Joueurs, scores=jeu.scores,cartes=jeu.cartes,R=jeu.R,K=jeu.K)
+  return render_template("game.html", cartesPosees=jeu.cartesPosees,Joueurs=jeu.Joueurs, scores=jeu.scores,cartes=jeu.cartes,R=jeu.R,K=jeu.K,word=d,J1='J1',J2='J2')
