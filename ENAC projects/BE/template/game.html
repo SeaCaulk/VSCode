@@ -3,6 +3,9 @@
 
 <head>
   {% include("layout/head.html") %}
+  {% if id==3 %}
+  <meta http-equiv="refresh" content="0;url=/game{{word}}[0,{{player}}]">
+  {% endif %}
 </head>
 
 <body>
@@ -26,9 +29,46 @@
       
       <div>
         <!-- <div class="text-center"><button type="submit">Modifier</button></div> -->
-        <input class="containedhands" type="image" src="static/img/Cartes/Carreau_7.png" border="0" alt="Submit" />
-        <input class="containedhands" type="image" src="static/img/Cartes/Carreau_8.png" border="0" alt="Submit" />
-        
+         <!-- {% if id==0%}
+        <input class="containedhands" type="image" src="static/img/Cartes/dos.jpg" action="/game{{word}}[1,takeRandom]" border="0" alt="Submit" />
+        <input class="containedhands" type="image" src="{{cartes[K[-1]]}}" action="/game{{word}}[1,takeKnown]" border="0" alt="Submit" />
+        {%elif id==1%}
+        <img src="static/img/Cartes/dos.jpg" class="containedhands">
+        <input class="containedhands" type="image" src="{{cartes[K[-1]]}}" action="/game{{word}}[2,give]" border="0" alt="Submit" />
+        {%else%}
+        <img src="static/img/Cartes/dos.jpg" class="containedhands">
+        <img src="{{cartes[K[-1]]}}" class="containedhands">
+        {%endif%} -->
+
+        {% if id==0 or (id==2 and word=="B") %}
+      <button type="submit" name="action" value="takeRandom" formaction='/game{{word}}[1,{{player}}]' class="containedhands">
+        <img src="static/img/Cartes/dos.jpg" alt="Submit">
+      </button>
+      <button type="submit" name="action" value="takeKnown" formaction='/game{{word}}[1,{{player}}]' class="containedhands">
+        <img src="{{cartes[K[-1]]}}" alt="Submit">
+      </button>
+    {% elif id==1 %}
+      <img src="static/img/Cartes/dos.jpg" class="containedhands">
+      <button type="submit" name="action" value="give" formaction='/game{{word}}[2,{{player}}]' class="containedhands">
+        <img src="{{cartes[K[-1]]}}" alt="Submit">
+      </button>
+    {% else %}
+      <img src="static/img/Cartes/dos.jpg" class="containedhands">
+      <img src="{{cartes[K[-1]]}}" class="containedhands">
+    {% endif %}
+    
+
+    <!-- {% if id==0 %}
+      
+        <a href='/game{{word}}[1,0]'><img src="static/img/Cartes/dos.jpg" alt="Submit"></a>
+        <a href='/game{{word}}[1,0]'><img src="{{cartes[K[-1]]}}" alt="Submit"></a>
+    {% elif id==1 %}
+      <img src="static/img/Cartes/dos.jpg" class="containedhands">
+        <a href='/game{{word}}[1,0]'><img src="{{cartes[K[-1]]}}" alt="Submit"></a>
+    {% else %}
+      <img src="static/img/Cartes/dos.jpg" class="containedhands">
+      <img src="{{cartes[K[-1]]}}" class="containedhands">
+    {% endif %} -->
       </div>
       
       <div>
@@ -37,9 +77,9 @@
       </div>
 
       <div>
-        {% for carte in Joueurs[J1]%}
+        {% for carte in Joueurs[player]%}
         {% set i = loop.index0 %}
-        <input type="checkbox" id="checkbox{{i}}">
+        <input type="checkbox" id="checkbox{{i}}" name="selected_cards" value="{{i}}">
         <label for="checkbox{{i}}" class="work" id="overlap">
           <img src="{{cartes[carte]}}" alt="{{carte}}" class="checkbox-img">
         </label>

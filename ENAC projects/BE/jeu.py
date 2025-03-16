@@ -56,7 +56,7 @@ def init(joueurs):
     save()
 
 
-def take(joueur,Joueurs,input,R,K):
+def take(joueur,input):
     #prend une carte d'une des deux piles, selon le choix du joueur
     if input=='takeRandom':
         Joueurs[joueur].append(R[-1])
@@ -66,7 +66,7 @@ def take(joueur,Joueurs,input,R,K):
         del K[-1]
     save()
 
-def pose(cartesPosees,inputlists):
+def pose(inputlists):
     #pose les cartes du joueur
     illegal=False
     for inputlist in inputlists:
@@ -77,13 +77,13 @@ def pose(cartesPosees,inputlists):
             cartesPosees.append([inputlist])
         else:
             illegal=True
-            return(illegal)
     save()
+    return(illegal)
 
-def give(joueur,Joueurs,K,carteAbandonnee):
+def give(joueur,carteAbandonnee):
     #pose la carte choisie par le joueur
-    K.append(Joueurs[joueur][carteAbandonnee])
-    del Joueurs[joueur][carteAbandonnee]
+    K.append(Joueurs[joueur][int(carteAbandonnee)])
+    del Joueurs[joueur][int(carteAbandonnee)]
     save()
 
 # def tour(joueur,cartes,input,R,K,carteAbandonnee, inputlists):
