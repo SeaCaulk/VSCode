@@ -19,6 +19,7 @@ body {
     flex-direction: column;
     } */
 
+
     input[type="checkbox"] {
       display: none;
     }
@@ -27,17 +28,37 @@ body {
       margin-right:-100px;
       /* z-index: 1; */
     }
+    
+    #overlap:first-child {
+      margin-left:0;
+    }
 
     .carteadv {
         rotate:90deg;
     }
 
-    #overlap:first-child {
-      margin-left:0;
+
+    .pose{
+        grid-column:2/5;
+        grid-row:2/5;
+        z-index: 2;
     }
+
 
     .work {
       rotate: 90deg;
+      transition:scale 0.2s ease;
+    }
+
+    .work:hover {
+      scale:1.05;
+    }
+
+    .playerhand {
+        display:flex;
+        grid-column: 2 / 4;
+        grid-row:5;
+        z-index:3;
     }
 
     .checkbox-img {
@@ -54,21 +75,108 @@ body {
     background-image: url("/static/img/tapis.png");
     background-size: cover;
     background-repeat: no-repeat;
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    /* flex-direction: row;
     justify-content: start;
-    align-items: center;
+    align-items: center; */
     height: 96vh;
-}
-
-    .containedhands {
-        justify-content:center;
-        align-items:center;
-        display:flex;
-        flex-direction:column;
-        rotate: 90deg;
+    grid-gap:10px;
+    grid-template-columns: repeat(5,5fr);
+    grid-template-rows: repeat(5,5fr);
     }
 
+    .containerforhands {
+        display:grid;
+        grid-column: 1;
+        grid-row:3;
+        /* grid-template-columns: 100px 100px;
+        grid-template-rows: 150px; */
+        grid-gap:10px;
+    }
+
+    .containedhands {
+        /* justify-content:center;
+        align-items:center;
+        display:flex;
+        flex-direction:column; */
+        padding:0;
+        border:0;
+        grid-row:1;
+        grid-column:1;
+        grid-gap:10px;
+        rotate: 90deg;
+        transition:scale 0.2s ease;
+    }
+
+    .containedhands:last-child {
+        grid-column: 2;
+    }
+
+    .containedhands:hover {
+        scale:1.1;
+    }
+
+    .containedhands.noScale:hover {
+        scale:1;
+    }
+
+    .zone-depot {
+        width : 100%;
+        height : 100%;
+        transform:scale(100%);
+        /* max-width : 200px;
+        max-height : 150px; */
+        border: 2px;
+        margin-bottom: 200px;
+        display:flex;
+        justify-content: right;
+        align-items:end;
+        background-color: #444;
+        font-size:large;
+        color:aquamarine;
+        position:static;
+    }
+    
+    .zone-depot:hover {
+        background-color: rgb(95, 97, 99);
+    }
+    
+    .zone-depot img {
+        width: 100%; 
+        height: 100%;
+        transform:scale(100%);
+      }
+
+    .droppedhands{
+        margin-right:-130px;
+        rotate:90deg;
+        
+    }
+
+    .droppedhands:first-child{
+        margin-left:0;
+    }
+
+    .overlay{
+        grid-row: 2/5;
+        grid-column:2/5;
+        display:inline;
+        justify-content: center;
+        align-items: center;
+        gap:20px;
+        z-index:1;
+    }
+
+    .deposericibg{
+        grid-row:2/5;
+        grid-column:2/5;
+        background-image:url("/static/img/zone-depot.png") ;
+        background-size: cover;
+        opacity:0.3;
+        border:10px solid rgb(144, 144, 144);
+        border-radius: 50px;
+    }
+    
 .content {
     flex: 1; 
 }

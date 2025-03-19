@@ -58,7 +58,7 @@ def game(d,id,Id):
   elif action[:4]=="take":
     jeu.take(Id,action)
   elif action=="pose":
-    if jeu.pose(selected_cards)==True:
+    if jeu.pose(selected_cards,Id)==True:
       id-=1
 
   elif action=="give":

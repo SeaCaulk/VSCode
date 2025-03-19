@@ -1,8 +1,5 @@
-import math
 from random import shuffle
-import json
 import os
-import itertools
 R,scores,cartesPosees,Joueurs,K=[],{},[],{},[]
 cartes={f"{i}{k}":f"/static/img/Cartes/{j}_{k}.png" for i,j in [('H','Coeur'),('C','Carreau'),('P','Pique'),('T','Trefle')] for k in range(7,15)}
 
@@ -66,18 +63,26 @@ def take(joueur,input):
         del K[-1]
     save()
 
-def pose(inputlists):
+def pose(l,Id):
     #pose les cartes du joueur
+    inputlist=[]
+    for i in sorted(l,reverse=True):
+        inputlist.append(Joueurs[Id][int(i)])
     illegal=False
-    for inputlist in inputlists:
-        inputlist.sort()
-        if len(inputlist)>2 and (inputlist[0][1:]==inputlist[i][1:] for i in range(len(inputlist))):
-            cartesPosees.append([inputlist])
-        elif (inputlist[0][0]==inputlist[i][0] for i in range(len(inputlist))) and (inputlist[i][1:]==inputlist[i+1][1:]-1 for i in range(len(inputlist))):
-            cartesPosees.append([inputlist])
-        else:
-            illegal=True
+    inputlist.sort()
+    if len(inputlist)>2 and (inputlist[0][1:]==inputlist[i][1:] for i in range(len(inputlist))):
+        cartesPosees.append(inputlist)
+        for i in sorted(l,reverse=True):
+            del Joueurs[Id][int(i)]
+    elif (inputlist[0][0]==inputlist[i][0] for i in range(len(inputlist))) and (inputlist[i][1:]==inputlist[i+1][1:]-1 for i in range(len(inputlist))):
+        cartesPosees.append(inputlist)
+        for i in sorted(l,reverse=True):
+            del Joueurs[Id][int(i)]
+    else:
+        illegal=True
     save()
+    print(illegal)
+    print(cartesPosees)
     return(illegal)
 
 def give(joueur,carteAbandonnee):
