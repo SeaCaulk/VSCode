@@ -27,6 +27,18 @@
         {%endif%}
 
       </div>
+      <div class="score-banner">
+        <div class="player-score">
+          <span class="player-name">{{player}}</span>
+          <span class="score">{{ scores[player] }}</span>
+        </div>
+        {% if word=="H" %}
+        <div class="player-score">
+          <span class="player-name">{{other_player}}</span>
+          <span class="score">{{ scores[other_player] }}</span>
+        </div>
+        {% endif %}
+      </div>
       
       <div class="containerforhands">
         <!-- <div class="text-center"><button type="submit">Modifier</button></div> -->
@@ -94,7 +106,7 @@
       {%endfor%}
     </div>
     <div class="deposericibg"></div>
-
+    
       <div class="playerhand">
         {% for carte in Joueurs[player]%}
         {% set i = loop.index0 %}

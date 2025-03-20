@@ -28,8 +28,14 @@ def save():
     with open("ENAC projects/BE/jeu.txt", "w") as file:
         file.write(f"{R}\n{scores}\n{cartesPosees}\n{Joueurs}\n{K}")
 
-def randomSet():
-    pass
+def score(player,L):
+    for i in L:
+        if Joueurs[player][i][1:] in ['7','8','9','10']:
+            scores[player]+=int(Joueurs[player][i][1:])
+        elif Joueurs[player][i][1:] in ['11','12','13']:
+            scores[player]+=10
+        elif Joueurs[player][i][1:]=='14':
+            scores[player]+=11
 
 def init(joueurs):
     R.clear()
@@ -43,6 +49,7 @@ def init(joueurs):
     print(CartesC,type(CartesC))
     for joueur in joueurs:
         Joueurs[joueur]=[]
+        scores[joueur]=0
         for rand in range(14+i):
             print(len(CartesC))
             Joueurs[joueur].append(CartesC[-1])
@@ -81,10 +88,12 @@ def pose(l,Id):
         illegal=True
     elif all(inputlist[0][1:]==inputlist[i][1:] for i in range(len(inputlist))):
         cartesPosees.append(inputlist)
+        score(Id,l)
         for i in sorted(l,reverse=True):
             del Joueurs[Id][i]
     elif all(inputlist[0][0]==inputlist[i][0] for i in range(len(inputlist))) and all(inputlist[i][1:]==inputlist[i+1][1:]-1 for i in range(len(inputlist))):
         cartesPosees.append(inputlist)
+        score(Id,l)
         for i in sorted(l,reverse=True):
             del Joueurs[Id][i]
     else:
