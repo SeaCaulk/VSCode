@@ -32,8 +32,13 @@ def randomSet():
     pass
 
 def init(joueurs):
+    R.clear()
+    scores.clear()
+    cartesPosees.clear()
+    Joueurs.clear()
+    K.clear()
     i=1
-    CartesC=list(cartes.keys())
+    CartesC=list(cartes.keys())*2
     shuffle(CartesC)
     print(CartesC,type(CartesC))
     for joueur in joueurs:
@@ -66,23 +71,25 @@ def take(joueur,input):
 def pose(l,Id):
     #pose les cartes du joueur
     inputlist=[]
+    l=[int(i) for i in l]
     for i in sorted(l,reverse=True):
-        inputlist.append(Joueurs[Id][int(i)])
+        inputlist.append(Joueurs[Id][i])
+    print(inputlist)
     illegal=False
     inputlist.sort()
-    if len(inputlist)>2 and (inputlist[0][1:]==inputlist[i][1:] for i in range(len(inputlist))):
+    if len(inputlist)<3:
+        illegal=True
+    elif all(inputlist[0][1:]==inputlist[i][1:] for i in range(len(inputlist))):
         cartesPosees.append(inputlist)
         for i in sorted(l,reverse=True):
-            del Joueurs[Id][int(i)]
-    elif (inputlist[0][0]==inputlist[i][0] for i in range(len(inputlist))) and (inputlist[i][1:]==inputlist[i+1][1:]-1 for i in range(len(inputlist))):
+            del Joueurs[Id][i]
+    elif all(inputlist[0][0]==inputlist[i][0] for i in range(len(inputlist))) and all(inputlist[i][1:]==inputlist[i+1][1:]-1 for i in range(len(inputlist))):
         cartesPosees.append(inputlist)
         for i in sorted(l,reverse=True):
-            del Joueurs[Id][int(i)]
+            del Joueurs[Id][i]
     else:
         illegal=True
     save()
-    print(illegal)
-    print(cartesPosees)
     return(illegal)
 
 def give(joueur,carteAbandonnee):

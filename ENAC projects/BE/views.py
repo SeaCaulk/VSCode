@@ -59,8 +59,7 @@ def game(d,id,Id):
     jeu.take(Id,action)
   elif action=="pose":
     if jeu.pose(selected_cards,Id)==True:
-      id-=1
-
+      pass
   elif action=="give":
     if len(selected_cards)>1:
       id-=1

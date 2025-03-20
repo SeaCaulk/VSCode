@@ -26,7 +26,6 @@ body {
 
     #overlap {
       margin-right:-100px;
-      /* z-index: 1; */
     }
     
     #overlap:first-child {
@@ -64,7 +63,6 @@ body {
     .checkbox-img {
       cursor: pointer;
       transition: transform 0.3s ease; 
-      /* rotate:90deg; */
     }
 
     input[type="checkbox"]:checked + label .checkbox-img {
